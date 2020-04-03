@@ -4,9 +4,37 @@ import 'package:flutterapp/widgets/inputText.dart';
 import 'add_screen.dart';
 import 'search_screen.dart';
 import 'report_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterapp/widgets/mainIcons.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final _auth = FirebaseAuth.instance;
+
+  FirebaseUser loggedInUser;
+
+  void getUser() async {
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+        print(loggedInUser.email);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

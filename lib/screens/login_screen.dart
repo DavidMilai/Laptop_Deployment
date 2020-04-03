@@ -2,10 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/widgets/inputText.dart';
 import 'package:flutterapp/screens/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _auth = FirebaseAuth.instance;
+    String email;
+    String password;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
@@ -30,11 +34,17 @@ class Login extends StatelessWidget {
                   InputText(
                     hint: 'Email',
                     textObscure: false,
+                    onChange: (value) {
+                      email = value;
+                    },
                   ),
                   SizedBox(height: 10),
                   InputText(
                     hint: 'Password',
                     textObscure: true,
+                    onChange: (value) {
+                      password = value;
+                    },
                   ),
                   SizedBox(height: 10),
                   MaterialButton(
@@ -48,11 +58,19 @@ class Login extends StatelessWidget {
                     elevation: 5,
                     highlightElevation: 30,
                     padding: EdgeInsets.all(15),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomeScreen()));
+                    onPressed: () async {
+                      try {
+                        final user = await _auth.signInWithEmailAndPassword(
+                            email: email, password: password);
+                        if (user != null) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeScreen()));
+                        }
+                      } catch (e) {
+                        print(e);
+                      }
                     },
                     color: Colors.red,
                   )
