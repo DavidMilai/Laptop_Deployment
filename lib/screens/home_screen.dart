@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/widgets/inputText.dart';
 import 'add_screen.dart';
+import 'search_screen.dart';
 import 'report_screen.dart';
 import 'package:flutterapp/widgets/mainIcons.dart';
 
@@ -69,7 +70,13 @@ class HomeScreen extends StatelessWidget {
                       CustomIconButton(
                         iconType: Icons.search,
                         textTitle: 'Search',
-                        onpress: () {},
+                        onpress: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      SearchScreen()));
+                        },
                       ),
                       CustomIconButton(
                         iconType: Icons.edit,

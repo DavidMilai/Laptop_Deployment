@@ -7,7 +7,7 @@ class CustomIconButton extends StatelessWidget {
       @required this.onpress});
   final String textTitle;
   final IconData iconType;
-  Function onpress;
+  final Function onpress;
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
