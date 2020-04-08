@@ -1,8 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/widgets/inputText.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class AddScreen extends StatelessWidget {
+class AddScreen extends StatefulWidget {
+  @override
+  _AddScreenState createState() => _AddScreenState();
+}
+
+class _AddScreenState extends State<AddScreen> {
+  final _firestore = Firestore.instance;
+  String studentName;
+  String studentNumber;
+  String serialNumber;
+  String faculty;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,16 +35,32 @@ class AddScreen extends StatelessWidget {
             InputText(
               hint: 'Full names',
               textObscure: false,
+              onChange: (value) {
+                studentName = value;
+              },
             ),
             SizedBox(height: 20),
             InputText(
               hint: 'Student Number',
               textObscure: false,
+              onChange: (value) {
+                studentNumber = value;
+              },
             ),
             SizedBox(height: 20),
             InputText(
               hint: 'Searial number',
               textObscure: false,
+              onChange: (value) {
+                serialNumber = value;
+              },
+            ),
+            InputText(
+              hint: 'Faculty',
+              textObscure: false,
+              onChange: (value) {
+                faculty = value;
+              },
             ),
             SizedBox(height: 20),
             MaterialButton(
@@ -46,6 +75,12 @@ class AddScreen extends StatelessWidget {
               highlightElevation: 30,
               padding: EdgeInsets.all(15),
               onPressed: () {
+                _firestore.collection('laptop list').add({
+                  'faculty': faculty,
+                  'serialNumber': serialNumber,
+                  'studentName': studentName,
+                  'studentNumber': serialNumber
+                });
                 Navigator.pop(context);
               },
               color: Colors.red,

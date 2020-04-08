@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   flex: 2,
                   child: Text(
-                    'Welcome Milai',
+                    'Welcome UserX',
                     style: TextStyle(
                         color: Colors.blue[900],
                         fontSize: 20,
