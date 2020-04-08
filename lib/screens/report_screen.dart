@@ -5,8 +5,10 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutterapp/models/chart_data.dart';
 import 'package:flutterapp/models/bar_chat.dart';
 import 'package:flutterapp/models/pie_chat.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ReportsScreen extends StatelessWidget {
+  final _auth = FirebaseAuth.instance;
   final List<Deployment> data = [
     Deployment(
       faculty: 'FIT',
@@ -45,6 +47,7 @@ class ReportsScreen extends StatelessWidget {
         actions: <Widget>[
           GestureDetector(
             onTap: () {
+              _auth.signOut();
               Navigator.pop(context);
             },
             child: Padding(

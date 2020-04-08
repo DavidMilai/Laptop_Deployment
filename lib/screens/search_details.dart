@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/widgets/inputText.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class AddScreen extends StatefulWidget {
+class SearchDetails extends StatefulWidget {
   @override
-  _AddScreenState createState() => _AddScreenState();
+  _SearchDetailsState createState() => _SearchDetailsState();
 }
 
-class _AddScreenState extends State<AddScreen> {
+class _SearchDetailsState extends State<SearchDetails> {
   final _fireStore = Firestore.instance;
   String studentName;
   String studentNumber;
   String serialNumber;
-  String faculty;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class _AddScreenState extends State<AddScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             InputText(
-              hint: 'Full names',
+              hint: 'Student name',
               textObscure: false,
               onChange: (value) {
                 studentName = value;
@@ -55,17 +54,10 @@ class _AddScreenState extends State<AddScreen> {
               },
             ),
             SizedBox(height: 10),
-            InputText(
-              hint: 'Faculty',
-              textObscure: false,
-              onChange: (value) {
-                faculty = value;
-              },
-            ),
             SizedBox(height: 10),
             MaterialButton(
               child: Text(
-                'Submit',
+                'Search',
                 style: TextStyle(fontSize: 20),
               ),
               textColor: Colors.black,
@@ -75,13 +67,13 @@ class _AddScreenState extends State<AddScreen> {
               highlightElevation: 30,
               padding: EdgeInsets.all(15),
               onPressed: () {
-                _fireStore.collection('laptop list').add({
-                  'faculty': faculty,
-                  'serialNumber': serialNumber,
-                  'studentName': studentName,
-                  'studentNumber': studentNumber
-                });
-                Navigator.pop(context);
+//  String studentName;
+//  String studentNumber;
+//  String serialNumber;
+//              if(studentNumber == null && serialNumber == null){
+//                print('object');
+//              }else if(studentNumber == null && serialNumber == null)
+//                print('object');
               },
               color: Colors.red,
             )

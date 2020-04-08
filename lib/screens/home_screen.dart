@@ -45,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: <Widget>[
           GestureDetector(
             onTap: () {
+              _auth.signOut();
               Navigator.pop(context);
             },
             child: Padding(
