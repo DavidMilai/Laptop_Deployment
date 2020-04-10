@@ -35,7 +35,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   final spinKit = SpinKitWave(
     color: Colors.red,
-    size: 50.0,
+    size: 50,
   );
   @override
   Widget build(BuildContext context) {
