@@ -79,6 +79,9 @@ class _LoginState extends State<Login> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => HomeScreen()));
+                            setState(() {
+                              isLoading = false;
+                            });
                           }
                         } catch (e) {
                           setState(() {

@@ -44,20 +44,6 @@ class ReportsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.red,
         title: Text('Reports'),
-        actions: <Widget>[
-          GestureDetector(
-            onTap: () {
-              _auth.signOut();
-              Navigator.pop(context);
-            },
-            child: Padding(
-              padding: EdgeInsets.only(right: 20),
-              child: Row(
-                children: <Widget>[Icon(Icons.lock), Text('Logout')],
-              ),
-            ),
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

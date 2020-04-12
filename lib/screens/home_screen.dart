@@ -41,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Colors.red,
         title: Text('Home'),
+        leading: Container(),
         actions: <Widget>[
           GestureDetector(
             onTap: () {
