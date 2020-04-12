@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomIconButton extends StatelessWidget {
@@ -10,25 +11,31 @@ class CustomIconButton extends StatelessWidget {
   final Function onpress;
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      elevation: 10,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: MaterialButton(
+        elevation: 10,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        color: Colors.red,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(
+              iconType,
+              color: Colors.white,
+              size: 50,
+            ),
+            SizedBox(height: 20),
+            Text(
+              textTitle,
+              style: TextStyle(fontSize: 20),
+            )
+          ],
+        ),
+        onPressed: onpress,
       ),
-      color: Colors.red,
-      padding: EdgeInsets.all(20),
-      child: Column(
-        children: <Widget>[
-          Icon(
-            iconType,
-            color: Colors.white,
-            size: 40,
-          ),
-          SizedBox(height: 10),
-          Text(textTitle)
-        ],
-      ),
-      onPressed: onpress,
     );
   }
 }

@@ -63,54 +63,55 @@ class ReportsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Container(
           child: StaggeredGridView.count(
-              crossAxisCount: 4,
-              mainAxisSpacing: 12,
-              crossAxisSpacing: 4,
-              padding: EdgeInsets.all(8),
-              staggeredTiles: [
-                StaggeredTile.count(2, 1),
-                StaggeredTile.count(2, 2),
-                StaggeredTile.count(2, 1),
-                StaggeredTile.count(4, 4),
-              ],
-              children: <Widget>[
-                Card(elevation: 10, child: Icon(Icons.grid_on)),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Card(
-                    elevation: 10,
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(top: 5),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Text(
-                                'Male',
-                                style: TextStyle(color: Colors.blue[900]),
-                              ),
-                              Text(
-                                'Female',
-                                style: TextStyle(color: Colors.pink[900]),
-                              ),
-                            ],
-                          ),
+            crossAxisCount: 4,
+            mainAxisSpacing: 12,
+            crossAxisSpacing: 4,
+            padding: EdgeInsets.all(8),
+            staggeredTiles: [
+              StaggeredTile.count(2, 1),
+              StaggeredTile.count(2, 2),
+              StaggeredTile.count(2, 1),
+              StaggeredTile.count(4, 4),
+            ],
+            children: <Widget>[
+              Card(elevation: 10, child: Icon(Icons.grid_on)),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Card(
+                  elevation: 10,
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(top: 5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Text(
+                              'Male',
+                              style: TextStyle(color: Colors.blue[900]),
+                            ),
+                            Text(
+                              'Female',
+                              style: TextStyle(color: Colors.pink[900]),
+                            ),
+                          ],
                         ),
-                        Expanded(child: PieChat(data: pie)),
-                      ],
-                    ),
+                      ),
+                      Expanded(child: PieChat(data: pie)),
+                    ],
                   ),
                 ),
-                Card(elevation: 10, child: Icon(Icons.list)),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Card(
-                    elevation: 10,
-                    child: BarChat(data: data),
-                  ),
+              ),
+              Card(elevation: 10, child: Icon(Icons.list)),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Card(
+                  elevation: 10,
+                  child: BarChat(data: data),
                 ),
-              ]),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/widgets/inputText.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'add_screen.dart';
 import 'search_screen.dart';
 import 'report_screen.dart';
@@ -57,98 +57,72 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: Column(
+      body: StaggeredGridView.count(
+        crossAxisCount: 4,
+        mainAxisSpacing: 4,
+        crossAxisSpacing: 6,
+        padding: EdgeInsets.all(8),
+        staggeredTiles: [
+          StaggeredTile.count(4, 2),
+          StaggeredTile.count(2, 2),
+          StaggeredTile.count(2, 2),
+          StaggeredTile.count(2, 2),
+          StaggeredTile.count(2, 2),
+        ],
         children: <Widget>[
-          Container(
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 3,
-                  child: Image.asset(
-                    'assets/SU.png',
-                  ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                flex: 3,
+                child: Image.asset(
+                  'assets/SU.png',
                 ),
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    'Welcome UserX',
-                    style: TextStyle(
-                        color: Colors.blue[900],
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Text(
+                  'Welcome UserX',
+                  style: TextStyle(
+                      color: Colors.blue[900],
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(20),
-                  topLeft: Radius.circular(20),
-                ),
-              ),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      CustomIconButton(
-                        iconType: Icons.search,
-                        textTitle: 'Search',
-                        onpress: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      SearchScreen()));
-                        },
-                      ),
-                      CustomIconButton(
-                        iconType: Icons.edit,
-                        textTitle: 'Edit',
-                        onpress: () {},
-                      )
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      CustomIconButton(
-                        iconType: Icons.library_books,
-                        textTitle: 'Reports',
-                        onpress: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      ReportsScreen()));
-                        },
-                      ),
-                      CustomIconButton(
-                        iconType: Icons.remove_red_eye,
-                        textTitle: 'History',
-                        onpress: () {},
-                      )
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  CustomIconButton(
-                    iconType: Icons.add,
-                    textTitle: 'Add',
-                    onpress: () {
-                      showModalBottomSheet(
-                          context: context, builder: (context) => AddScreen());
-                    },
-                  )
-                ],
-              ),
-            ),
-          )
+          CustomIconButton(
+            iconType: Icons.search,
+            textTitle: 'Search',
+            onpress: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => SearchScreen()));
+            },
+          ),
+          CustomIconButton(
+            iconType: Icons.edit,
+            textTitle: 'Edit',
+            onpress: () {},
+          ),
+          CustomIconButton(
+            iconType: Icons.library_books,
+            textTitle: 'Reports',
+            onpress: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => ReportsScreen()));
+            },
+          ),
+          CustomIconButton(
+            iconType: Icons.add,
+            textTitle: 'Add',
+            onpress: () {
+              showModalBottomSheet(
+                  context: context, builder: (context) => AddScreen());
+            },
+          ),
         ],
       ),
     );
