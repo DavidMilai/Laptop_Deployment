@@ -22,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
       final user = await _auth.currentUser();
       if (user != null) {
         loggedInUser = user;
-        print(loggedInUser.email);
       }
     } catch (e) {
       print(e);
@@ -38,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.lightBlue,
       appBar: AppBar(
         backgroundColor: Colors.red,
         title: Text('Home'),
