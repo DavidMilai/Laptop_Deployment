@@ -92,37 +92,33 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                       highlightElevation: 30,
                       padding: EdgeInsets.all(15),
                       onPressed: () async {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomeScreen()));
-//                        setState(() {
-//                          isLoading = true;
-//                        });
-//                        try {
-//                          final user = await _auth.signInWithEmailAndPassword(
-//                              email: email, password: password);
-//                          if (user != null) {
-//                            Navigator.push(
-//                                context,
-//                                MaterialPageRoute(
-//                                    builder: (context) => HomeScreen()));
-//                            setState(() {
-//                              isLoading = false;
-//                            });
-//                          }
-//                        } catch (e) {
-//                          setState(() {
-//                            isLoading = false;
-//                          });
-//                          showDialog(
-//                              context: context,
-//                              builder: (BuildContext context) {
-//                                return AlertDialog(
-//                                  title: Text("Incorrect username or password"),
-//                                );
-//                              });
-//                        }
+                        setState(() {
+                          isLoading = true;
+                        });
+                        try {
+                          final user = await _auth.signInWithEmailAndPassword(
+                              email: email, password: password);
+                          if (user != null) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen()));
+                            setState(() {
+                              isLoading = false;
+                            });
+                          }
+                        } catch (e) {
+                          setState(() {
+                            isLoading = false;
+                          });
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Incorrect username or password"),
+                                );
+                              });
+                        }
                       },
                       color: Colors.red,
                     )
