@@ -74,8 +74,11 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               Expanded(
                 flex: 3,
-                child: Image.asset(
-                  'assets/SU.png',
+                child: Hero(
+                  tag: 'logo',
+                  child: Image.asset(
+                    'assets/SU.png',
+                  ),
                 ),
               ),
               Expanded(

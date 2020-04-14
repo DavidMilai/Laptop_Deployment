@@ -10,8 +10,24 @@ class Login extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
+  AnimationController controller;
+  Animation animation;
   bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      duration: Duration(seconds: 1),
+      vsync: this,
+    );
+    animation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
+    controller.forward();
+    controller.addListener(() {
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +43,21 @@ class _LoginState extends State<Login> {
         inAsyncCall: isLoading,
         child: Container(
           padding: EdgeInsets.only(left: 10, right: 10),
-          color: Colors.blueAccent,
+          color: Colors.blueAccent.withOpacity(animation.value),
           child: Column(
             children: <Widget>[
               Expanded(
                 child: Column(
                   children: <Widget>[
-                    Flexible(child: Image(image: AssetImage('assets/SU.png'))),
+                    Flexible(
+                      child: Hero(
+                        tag: 'logo',
+                        child: Image(
+                          image: AssetImage('assets/SU.png'),
+                          height: animation.value * 500,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -68,33 +92,37 @@ class _LoginState extends State<Login> {
                       highlightElevation: 30,
                       padding: EdgeInsets.all(15),
                       onPressed: () async {
-                        setState(() {
-                          isLoading = true;
-                        });
-                        try {
-                          final user = await _auth.signInWithEmailAndPassword(
-                              email: email, password: password);
-                          if (user != null) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomeScreen()));
-                            setState(() {
-                              isLoading = false;
-                            });
-                          }
-                        } catch (e) {
-                          setState(() {
-                            isLoading = false;
-                          });
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: Text("Incorrect username or password"),
-                                );
-                              });
-                        }
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeScreen()));
+//                        setState(() {
+//                          isLoading = true;
+//                        });
+//                        try {
+//                          final user = await _auth.signInWithEmailAndPassword(
+//                              email: email, password: password);
+//                          if (user != null) {
+//                            Navigator.push(
+//                                context,
+//                                MaterialPageRoute(
+//                                    builder: (context) => HomeScreen()));
+//                            setState(() {
+//                              isLoading = false;
+//                            });
+//                          }
+//                        } catch (e) {
+//                          setState(() {
+//                            isLoading = false;
+//                          });
+//                          showDialog(
+//                              context: context,
+//                              builder: (BuildContext context) {
+//                                return AlertDialog(
+//                                  title: Text("Incorrect username or password"),
+//                                );
+//                              });
+//                        }
                       },
                       color: Colors.red,
                     )
