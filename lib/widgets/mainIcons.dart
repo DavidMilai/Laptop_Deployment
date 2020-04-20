@@ -30,7 +30,10 @@ class CustomIconButton extends StatelessWidget {
             SizedBox(height: 20),
             Text(
               textTitle,
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white70,
+              ),
             )
           ],
         ),

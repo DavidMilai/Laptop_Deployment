@@ -4,6 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'add_screen.dart';
 import 'search_screen.dart';
 import 'report_screen.dart';
+import 'edit_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterapp/widgets/mainIcons.dart';
 
@@ -106,7 +107,12 @@ class _HomeScreenState extends State<HomeScreen> {
           CustomIconButton(
             iconType: Icons.edit,
             textTitle: 'Edit',
-            onpress: () {},
+            onpress: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => EditScreen()));
+            },
           ),
           CustomIconButton(
             iconType: Icons.library_books,
@@ -119,11 +125,13 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           CustomIconButton(
-            iconType: Icons.add,
-            textTitle: 'Add',
+            iconType: Icons.assignment_turned_in,
+            textTitle: 'Issue Laptop',
             onpress: () {
-              showModalBottomSheet(
-                  context: context, builder: (context) => AddScreen());
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => IssueLaptop()));
             },
           ),
         ],

@@ -14,6 +14,15 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation animation;
   bool isLoading = false;
+  TextEditingController emailTextController = TextEditingController();
+  TextEditingController passwordTextController = TextEditingController();
+
+  onClear() {
+    setState(() {
+      emailTextController.text = "";
+      passwordTextController.text = "";
+    });
+  }
 
   @override
   void initState() {
@@ -70,6 +79,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                       onChange: (value) {
                         email = value;
                       },
+                      controller: emailTextController,
                     ),
                     SizedBox(height: 10),
                     InputText(
@@ -78,6 +88,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                       onChange: (value) {
                         password = value;
                       },
+                      controller: passwordTextController,
                     ),
                     SizedBox(height: 10),
                     MaterialButton(
@@ -92,6 +103,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                       highlightElevation: 30,
                       padding: EdgeInsets.all(15),
                       onPressed: () async {
+                        onClear();
                         setState(() {
                           isLoading = true;
                         });
